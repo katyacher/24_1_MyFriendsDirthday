@@ -23,18 +23,18 @@ int main() {
         }
     }
 
-    std::map<double,std::string> nearest;
+    std::map<double,std::string> next;
 
     for(auto my_friend: birthdays) {
         my_friend.second.tm_year = current_tm->tm_year;
         double diff = difftime(current_t, mktime(&my_friend.second));
-        nearest.emplace(std::abs(diff), my_friend.first);
+        next.emplace(std::abs(diff), my_friend.first);
 
         if(my_friend.second.tm_mon == current_tm->tm_mon
             && my_friend.second.tm_mday == current_tm->tm_mday){
             std::cout << "Today is "<< my_friend.first << "'s birthday. " ;
         }
     }
-    std::cout << nearest.begin()->first << " - " << nearest.begin()->second;
+    std::cout << next.begin()->first << " - " << next.begin()->second;
     return 0;
 }
